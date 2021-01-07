@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import isHotkey from "is-hotkey";
 
 import { Editable, withReact, Slate } from "slate-react";
@@ -6,6 +6,11 @@ import { createEditor, Editor, Node } from "slate";
 import { withHistory } from "slate-history";
 import MarkButton, { toggleMark } from "./MarkButton";
 import BlockButton from "./BlockButton";
+import styled from "styled-components";
+import { getSpace } from "../../theme/theme";
+import { Button } from "../../components/Button";
+import { Grid } from "../../components/Grid";
+import { MoreVertical } from "react-feather";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -17,39 +22,40 @@ const HOTKEYS = {
 const initialValue = [
   {
     type: "paragraph",
-    children: [
-      { text: "This is editable " },
-      { text: "rich", bold: true },
-      { text: " text, " },
-      { text: "much", italic: true },
-      { text: " better than a " },
-      { text: "<textarea>", code: true },
-      { text: "!" },
-    ],
-  },
-  {
-    type: "paragraph",
-    children: [
-      {
-        text:
-          "Since it's rich text, you can do things like turn a selection of text ",
-      },
-      { text: "bold", bold: true },
-      {
-        text:
-          ", or add a semantically rendered block quote in the middle of the page, like this:",
-      },
-    ],
-  },
-  {
-    type: "block-quote",
-    children: [{ text: "A wise quote." }],
-  },
-  {
-    type: "paragraph",
-    children: [{ text: "Try it out for yourself!" }],
+    children: [{ text: "" }],
   },
 ];
+const ToolContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: ${(props) => getSpace(props, "1", true)};
+`;
+
+const ToolsWrapper = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: ${(props) => getSpace(props, "1", true)};
+`;
+
+const ToolDivider = styled.div`
+  height: 24px;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 0 ${(props) => getSpace(props, "1", true)};
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: ${(props) => getSpace(props, "2", true)};
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+`;
+
+const EditorContainer = styled.div`
+  padding: ${(props) => props.theme.spaces.md}px;
+`;
 
 const CreateNewDiary = () => {
   const [value, setValue] = useState<Node[]>(initialValue);
@@ -58,45 +64,59 @@ const CreateNewDiary = () => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   return (
     <div>
+      <Header>
+        <h1>Example title</h1>
+        <Grid col="md">
+          <Button color="success">Save</Button>
+          <Button color="based">
+            <MoreVertical />
+          </Button>
+        </Grid>
+      </Header>
       <Slate
         editor={editor}
         value={value}
         onChange={(value) => setValue(value)}
       >
-        <div>
-          <MarkButton format="bold" icon="format_bold" />
-          <MarkButton format="italic" icon="format_italic" />
-          <MarkButton format="underline" icon="format_underlined" />
-          <MarkButton format="code" icon="code" />
-
-          <BlockButton format="heading-one" icon="looks_one" />
-          <BlockButton format="heading-two" icon="looks_two" />
-          <BlockButton format="heading-three" icon="looks_three" />
-          <BlockButton format="block-quote" icon="format_quote" />
-          <BlockButton format="numbered-list" icon="format_list_numbered" />
-          <BlockButton format="bulleted-list" icon="format_list_bulleted" />
-        </div>
-
-        <Editable
-          renderElement={renderElement}
-          renderLeaf={renderLeaf}
-          placeholder="Enter some rich text..."
-          spellCheck
-          autoFocus
-          onKeyDown={(event) => {
-            if (event.key === "Tab") {
-              event.preventDefault();
-              Editor.insertText(editor, "\t");
-            }
-            for (const hotkey in HOTKEYS) {
-              if (isHotkey(hotkey, event as any)) {
+        <ToolContainer>
+          <ToolsWrapper>
+            <MarkButton format="bold" icon="format_bold" />
+            <MarkButton format="italic" icon="format_italic" />
+            <MarkButton format="underline" icon="format_underlined" />
+            <MarkButton format="code" icon="code" />
+          </ToolsWrapper>
+          <ToolDivider />
+          <ToolsWrapper>
+            <BlockButton format="heading-one" icon="looks_one" />
+            <BlockButton format="heading-two" icon="looks_two" />
+            <BlockButton format="heading-three" icon="looks_three" />
+            <BlockButton format="block-quote" icon="format_quote" />
+            <BlockButton format="numbered-list" icon="format_list_numbered" />
+            <BlockButton format="bulleted-list" icon="format_list_bulleted" />
+          </ToolsWrapper>
+        </ToolContainer>
+        <EditorContainer>
+          <Editable
+            renderElement={renderElement}
+            renderLeaf={renderLeaf}
+            placeholder="Enter some rich text..."
+            spellCheck
+            autoFocus
+            onKeyDown={(event) => {
+              if (event.key === "Tab") {
                 event.preventDefault();
-                const mark = HOTKEYS[hotkey];
-                toggleMark(editor, mark);
+                Editor.insertText(editor, "\t");
               }
-            }
-          }}
-        />
+              for (const hotkey in HOTKEYS) {
+                if (isHotkey(hotkey, event as any)) {
+                  event.preventDefault();
+                  const mark = HOTKEYS[hotkey];
+                  toggleMark(editor, mark);
+                }
+              }
+            }}
+          />
+        </EditorContainer>
       </Slate>
     </div>
   );

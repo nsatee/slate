@@ -1,13 +1,33 @@
 import { DefaultTheme, ThemeProps } from "styled-components";
 import tiny from 'tinycolor2';
 
-export type ThemeType = typeof light; // This is the type definition for my theme object.
+export type ThemeType = typeof light;
+export type ColorName = keyof typeof lightColor;
+export type Spaces = keyof typeof spaces;
+
+const lightColor = {
+    brand: "#6A94E1",
+    based: "#DBDFE8",
+    secondary: "#854BA8",
+    text: "#35344A",
+    background: "#F3F6FA",
+    success: "#73D68E",
+    error: "#DF4F61",
+    warning: "#F5B948"
+}
+
+const spaces = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32,
+}
+
 
 export const light = {
-  colors: {
-    brand: "#11698e",
-    background: "#ffffff"
-  },
+  colors: lightColor,
+  spaces,
   space: [4, 8, 12, 16, 24, 32, 48, 72, 96, 120],
   button: {
     corner: 8,
@@ -27,6 +47,11 @@ type SpaceIndex = "0" |"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 export const getSpace = (props: ThemeProps<DefaultTheme>, index: SpaceIndex, asPx?: boolean) => {
   const value = props.theme.space[parseInt(index)]
   return asPx ? `${value}px` : value
+}
+
+export const getSpaces = (props: ThemeProps<DefaultTheme>, size: keyof typeof spaces, asNumber?: boolean) => {
+  const value = props.theme.spaces[size];
+  return asNumber ? value : value + "px";
 }
 
 export const getColor = (props: ThemeProps<DefaultTheme>, color: keyof typeof theme.colors, colorCommand?: [ColorType, ColorValue]) => {
