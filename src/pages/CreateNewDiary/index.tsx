@@ -7,10 +7,11 @@ import { withHistory } from "slate-history";
 import MarkButton, { toggleMark } from "./MarkButton";
 import BlockButton from "./BlockButton";
 import styled from "styled-components";
-import { getSpace } from "../../theme/theme";
 import { Button } from "../../components/Button";
 import { Grid } from "../../components/Grid";
 import { MoreVertical } from "react-feather";
+import Text from "../../components/Text";
+import { getSpace, useTheme } from "../../theme";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -29,27 +30,27 @@ const ToolContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: ${(props) => getSpace(props, "1", true)};
+  padding: ${(props) => getSpace(props, "xs")};
 `;
 
 const ToolsWrapper = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-gap: ${(props) => getSpace(props, "1", true)};
+  grid-gap: ${(props) => getSpace(props, "xs")};
 `;
 
 const ToolDivider = styled.div`
   height: 24px;
   width: 1px;
   background: rgba(0, 0, 0, 0.2);
-  margin: 0 ${(props) => getSpace(props, "1", true)};
+  margin: 0 ${(props) => getSpace(props, "sm")};
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${(props) => getSpace(props, "2", true)};
+  padding: ${(props) => getSpace(props, "md")};
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
@@ -62,14 +63,19 @@ const CreateNewDiary = () => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+  const theme = useTheme();
   return (
     <div>
       <Header>
-        <h1>Example title</h1>
-        <Grid col="md">
-          <Button color="success">Save</Button>
-          <Button color="based">
-            <MoreVertical />
+        <Text.H1>Example title</Text.H1>
+        <Grid flow="column" gap="md">
+          <Button color="success">
+            <Text.Display bold color="background">
+              Save
+            </Text.Display>
+          </Button>
+          <Button color="based" onClick={() => theme.change("dark")}>
+            <MoreVertical color={theme.activeTheme.colors.text} />
           </Button>
         </Grid>
       </Header>
@@ -149,17 +155,25 @@ const Element = ({ attributes, children, element }: any) => {
     case "bulleted-list":
       return <ul {...attributes}>{children}</ul>;
     case "heading-one":
-      return <h1 {...attributes}>{children}</h1>;
+      return <Text.H1 {...attributes}>{children}</Text.H1>;
     case "heading-two":
-      return <h2 {...attributes}>{children}</h2>;
+      return <Text.H2 {...attributes}>{children}</Text.H2>;
     case "heading-three":
-      return <h3 {...attributes}>{children}</h3>;
+      return <Text.H3 {...attributes}>{children}</Text.H3>;
     case "list-item":
-      return <li {...attributes}>{children}</li>;
+      return (
+        <li {...attributes}>
+          <Text.Display>{children}</Text.Display>
+        </li>
+      );
     case "numbered-list":
-      return <ol {...attributes}>{children}</ol>;
+      return (
+        <ol {...attributes}>
+          <Text.Display>{children}</Text.Display>
+        </ol>
+      );
     default:
-      return <p {...attributes}>{children}</p>;
+      return <Text.Body {...attributes}>{children}</Text.Body>;
   }
 };
 

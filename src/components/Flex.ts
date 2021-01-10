@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-enum JustifyValue {
+export enum JustifyValue {
   end = "flex-end",
   start = "flex-start",
   center = "center",
@@ -8,21 +8,30 @@ enum JustifyValue {
   around = "space-around"
 }
 
-type JustifyName = "end" | "start" | "center" | "between" | "around"
+export type JustifyName = "end" | "start" | "center" | "between" | "around"
 
-type Props = {
+export type CommonLayoutType = {
   justify?: JustifyName;
   align?: JustifyName;
   alignSelf?: JustifyName;
   justifySelf?: JustifyName;
-  flex?: number;
 }
 
-export const Flex = styled.div<Props>`
-  display: flex;
+type Props = CommonLayoutType & {
+  flex?: number;
+  wrap?: boolean;
+}
+
+export const CommonLayoutRule = css<CommonLayoutType>`
   justify-content: ${props => props.justify &&JustifyValue[props.justify]};
   align-items: ${props => props.align &&  JustifyValue[props.align]};
   justify-self: ${props => props.justifySelf && JustifyValue[props.justifySelf]};
   align-self: ${props => props.alignSelf &&JustifyValue[props.alignSelf]};
+`;
+
+export const Flex = styled.div<Props>`
+  display: flex;
   flex: number;
+  flex-wrap: ${props => props.wrap && "wrap"};
+  ${CommonLayoutRule}
 `;
