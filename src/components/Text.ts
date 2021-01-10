@@ -4,51 +4,59 @@ import { ColorName, getSpace } from "../theme";
 type Props =  {  
   color?: ColorName,
   bold?: boolean,
+  normal?: boolean,
+  light?: boolean,
   underline?: boolean,
+  align?: "left" | "center" | "right";
 }
 
 const CommonText = css<Props>`
-  font-weight: ${(props) => props.bold && "bold"};
+  font-weight: ${(props) => props.bold ? "bolder" : props.normal ? "normal" : props.light && "lighter"};
   text-decoration: ${(props) => props.underline && "underline"};
   color: ${props => props.theme.colors[props.color || "text"]};
+  text-align: ${props => props.align};
 `;
 
 const Text = {
   H1: styled.h1<Props>`
-    ${CommonText}
+    font-weight: bold;
     font-size: 32px;
     line-height: 48px;
+    ${CommonText}
   `,
   H2: styled.h2<Props>`
-    ${CommonText}
+    font-weight: bold;
     font-size: 24px;
     line-height: 40px;
+    ${CommonText}
   `,
   H3: styled.h3<Props>`
-    ${CommonText}
+    font-weight: bold;
     font-size: 18px;
     line-height: 32px;
+    ${CommonText}
   `,
   H4 : styled.h4<Props>`
-    ${CommonText}
+    font-weight: bold;
     font-size: 16px;
     line-height: 24px;
+    ${CommonText}
   `,
   Body: styled.p<Props>`
-    ${CommonText}
     font-size: 16px;
     line-height: 24px;
     margin-bottom: ${props => getSpace(props, "md")};
+    ${CommonText}
   `,
    Display: styled.span<Props>`
-    ${CommonText}
     font-size: 16px;
     line-height: 24px;
+    ${CommonText}
   `,
    Small: styled.p<Props>`
-    ${CommonText}
     font-size: 12px;
     line-height: 20px;
+    ${CommonText}
   `
 }
 

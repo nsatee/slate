@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import Box from "./Box";
 
 export enum JustifyValue {
   end = "flex-end",
@@ -19,7 +20,7 @@ export type CommonLayoutType = {
 
 type Props = CommonLayoutType & {
   flex?: number;
-  wrap?: boolean;
+  wrapped?: boolean;
 }
 
 export const CommonLayoutRule = css<CommonLayoutType>`
@@ -29,9 +30,9 @@ export const CommonLayoutRule = css<CommonLayoutType>`
   align-self: ${props => props.alignSelf &&JustifyValue[props.alignSelf]};
 `;
 
-export const Flex = styled.div<Props>`
+export const Flex = styled(Box)<Props>`
   display: flex;
   flex: number;
-  flex-wrap: ${props => props.wrap && "wrap"};
+  flex-wrap: ${props => props.wrapped && "wrap"};
   ${CommonLayoutRule}
 `;

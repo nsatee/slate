@@ -5,7 +5,7 @@ import { Reset } from "../components/Reset";
 
 export type ThemeType = typeof defaultTheme;
 export type ColorName = keyof typeof lightColor;
-export type Spaces = keyof typeof spaces;
+export type Spaces = keyof typeof spaces | "none";
 export type ThemeSet = { [key: string]: ThemeType };
 type StoreType = React.Context<{
   active: string;
@@ -60,10 +60,10 @@ type ColorValue =
 
 export const getSpace = (
   props: ThemeProps<DefaultTheme>,
-  size?: keyof typeof spaces,
+  size?: keyof typeof spaces | "none",
   asNumber?: boolean
 ) => {
-  const value = size ? props.theme.spaces[size] : 0;
+  const value = size && size !== "none" ? props.theme.spaces[size] : 0;
   return asNumber ? value : value + "px";
 };
 
@@ -75,17 +75,17 @@ export const getColor = (
   if (colorCommand) {
     const command = colorCommand![0];
     const colorObj = tiny(props.theme.colors[color]);
-    const basedTen = parseFloat(colorCommand[1]) * 10;
+    const based = (based: number) => parseFloat(colorCommand[1]) * based;
 
     switch (command) {
       case "alpha":
         return colorObj.setAlpha(parseFloat(colorCommand[1])).toRgbString();
       case "darken":
-        return colorObj.darken(basedTen).toRgbString();
+        return colorObj.darken(based(10)).toRgbString();
       case "brighten":
-        return colorObj.brighten(basedTen).toRgbString();
+        return colorObj.brighten(based(10)).toRgbString();
       case "lighten":
-        return colorObj.lighten(basedTen).toRgbString();
+        return colorObj.lighten(based(100)).toString();
       default:
         return;
     }

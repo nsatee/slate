@@ -18,6 +18,7 @@ type Props = {
 }
 
 const Box = styled.div<Props>`
+  position: relative;
   padding: ${(props) => (props.px || props.py) && `${getSpace(props, props.py)} ${getSpace(props, props.px)}`};
   padding-left: ${props => props.pl && getSpace(props, props.pl)};
   padding-right: ${props => props.pr && getSpace(props, props.pr)};

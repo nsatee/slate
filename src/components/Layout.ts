@@ -67,10 +67,10 @@ export const Col = styled(Flex)<ColProps>`
   width: 100%;
   justify-content: start;
   ${Row} {
-    margin-left: ${props => getSpace(props, props.gap)};
+    margin-right: ${props => getSpace(props, props.gap)};
 
     &:last-child {
-      margin-left: 0;
+      margin-right: 0;
     }
   }
 `;

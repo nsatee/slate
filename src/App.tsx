@@ -39,6 +39,10 @@ export const NavWrapper = styled.div`
   padding: 0 ${(props) => getSpace(props, "sm")};
 `;
 
+export const Content = styled(Flex)`
+  max-width: 1200px;
+`;
+
 const Navigation = () => {
   return (
     <NavContainer>
@@ -63,11 +67,14 @@ function App() {
   useEffect(() => {
     theme.register(init);
   }, [theme]);
+
   return (
     <Theme theme={init}>
       <MainContainer>
         <Navigation />
-        <MainPage />
+        <Content alignSelf="center">
+          <MainPage />
+        </Content>
       </MainContainer>
     </Theme>
   );
