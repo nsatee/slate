@@ -7,11 +7,11 @@ import { withHistory } from "slate-history";
 import MarkButton, { toggleMark } from "./MarkButton";
 import BlockButton from "./BlockButton";
 import styled from "styled-components";
-import { Button } from "../../components/Button";
-import { Grid } from "../../components/Grid";
+import { Button } from "../../symply-ui/components/Button";
+import { Grid } from "../../symply-ui/components/Grid";
 import { MoreVertical } from "react-feather";
-import Text from "../../components/Text";
-import { getSpace, useTheme } from "../../theme";
+import Text from "../../symply-ui/components/Text";
+import { getSpace, useTheme } from "../../symply-ui/theme";
 
 const HOTKEYS = {
   "mod+b": "bold",

@@ -1,8 +1,8 @@
 import { Plus } from "@styled-icons/bootstrap";
 import React from "react";
-import { Flex } from "../../components/Flex";
-import Text from "../../components/Text";
-import { useTheme } from "../../theme";
+import { Flex } from "../../symply-ui/components/Flex";
+import Text from "../../symply-ui/components/Text";
+import { useTheme } from "../../symply-ui/theme";
 import CardContainer from "./CardContainer";
 import * as Styled from "./styled";
 

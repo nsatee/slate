@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Box from "../../components/Box";
-import { getColor } from "../../theme";
+import Box from "../../symply-ui/components/Box";
+import { getColor } from "../../symply-ui/theme";
 
 export const PageContent = styled.div`
   flex: 1;

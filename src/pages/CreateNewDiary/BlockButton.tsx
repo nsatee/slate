@@ -9,7 +9,7 @@ import {
   ListOl,
 } from "@styled-icons/bootstrap";
 import { FC } from "react";
-import { Button } from "../../components/Button";
+import { Button } from "../../symply-ui/components/Button";
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 const IconSet = {

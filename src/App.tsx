@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import MainPage from "./pages/MainPage";
-import { getColor, Theme, getSpace, useTheme } from "./theme";
-import Box from "./components/Box";
-import { Flex } from "./components/Flex";
-import Text from "./components/Text";
-import { Button } from "./components/Button";
+import { getColor, Theme, getSpace, useTheme } from "./symply-ui/theme";
+import Box from "./symply-ui/components/Box";
+import { Flex } from "./symply-ui/components/Flex";
+import Text from "./symply-ui/components/Text";
+import { Button } from "./symply-ui/components/Button";
 
 const MainContainer = styled.div`
   background: ${(props) => getColor(props, "based")};

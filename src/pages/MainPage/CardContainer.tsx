@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import Box from "../../components/Box";
-import Text from "../../components/Text";
+import Box from "../../symply-ui/components/Box";
+import Text from "../../symply-ui/components/Text";
 import { Card } from "./styled";
 
 const CardContainer: FC<{ title: string }> = ({ title, children }) => {

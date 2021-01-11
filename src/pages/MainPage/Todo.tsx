@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import Box from "../../components/Box";
-import Card, { CardBody } from "../../components/Card";
-import Checkbox, { CheckboxElement } from "../../components/Checkbox";
-import { Flex } from "../../components/Flex";
-import Text from "../../components/Text";
+import Box from "../../symply-ui/components/Box";
+import Card, { CardBody } from "../../symply-ui/components/Card";
+import Checkbox, { CheckboxElement } from "../../symply-ui/components/Checkbox";
+import { Flex } from "../../symply-ui/components/Flex";
+import Text from "../../symply-ui/components/Text";
 import CardContainer from "./CardContainer";
 
 const Task: FC<{ onCheck?: (e: boolean) => void }> = ({

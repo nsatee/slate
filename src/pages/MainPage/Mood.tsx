@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import tinycolor from "tinycolor2";
-import Box from "../../components/Box";
-import { Button } from "../../components/Button";
-import { Flex } from "../../components/Flex";
-import Text from "../../components/Text";
+import Box from "../../symply-ui/components/Box";
+import { Button } from "../../symply-ui/components/Button";
+import { Flex } from "../../symply-ui/components/Flex";
+import Text from "../../symply-ui/components/Text";
 import CardContainer from "./CardContainer";
 import * as Styled from "./styled";
 

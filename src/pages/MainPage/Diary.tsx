@@ -1,7 +1,7 @@
 import React from "react";
-import Box from "../../components/Box";
-import ListGroup, { List } from "../../components/ListGroup";
-import Text from "../../components/Text";
+import Box from "../../symply-ui/components/Box";
+import ListGroup, { List } from "../../symply-ui/components/ListGroup";
+import Text from "../../symply-ui/components/Text";
 import CardContainer from "./CardContainer";
 
 const Diary = () => {

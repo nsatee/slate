@@ -1,6 +1,6 @@
-import Box from "../../components/Box";
-import { Grid } from "../../components/Grid";
-import { Col, Row } from "../../components/Layout";
+import Box from "../../symply-ui/components/Box";
+import { Grid } from "../../symply-ui/components/Grid";
+import { Col, Row } from "../../symply-ui/components/Layout";
 import * as Styled from "./styled";
 import Goals from "./Goals";
 import Mood from "./Mood";

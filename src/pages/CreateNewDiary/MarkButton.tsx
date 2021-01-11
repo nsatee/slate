@@ -1,6 +1,6 @@
 import { Editor } from "slate";
 import { useSlate } from "slate-react";
-import { Button } from "../../components/Button";
+import { Button } from "../../symply-ui/components/Button";
 import {
   TypeBold,
   TypeItalic,
