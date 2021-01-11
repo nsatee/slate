@@ -20,6 +20,7 @@ const MainPage = () => {
                 col="2"
                 screen={{ col: { md: "1" }, gap: { md: "none" } }}
                 gap="md"
+                align="start"
               >
                 <Todo />
                 <Diary />

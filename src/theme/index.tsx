@@ -47,9 +47,19 @@ const spaces = {
   xl: 32,
 };
 
+const shadows = {
+  lv1:
+    "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+  lv2:
+    "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
+  lv3:
+    "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px",
+};
+
 export const defaultTheme = {
   colors: lightColor,
   spaces,
+  shadows,
   button: {
     default: "normal" as ButtonType,
     border: 2,

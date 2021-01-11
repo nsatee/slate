@@ -54,6 +54,7 @@ export const GoalSection = styled.div`
   padding: 8px;
   border-radius: 12px;
   min-width: 120px;
+  min-height: 80px;
   margin-bottom: 16px;
   display: flex;
   flex-direction: column;
@@ -62,7 +63,7 @@ export const GoalSection = styled.div`
 `;
 
 export const AddGoal = styled(GoalSection)`
-  width: 138px;
+  width: 120px;
   background: transparent;
   justify-content: center;
   align-items: center;

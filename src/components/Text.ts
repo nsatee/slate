@@ -8,6 +8,7 @@ type Props =  {
   light?: boolean,
   underline?: boolean,
   align?: "left" | "center" | "right";
+  sub?: boolean;
 }
 
 const CommonText = css<Props>`
@@ -15,6 +16,7 @@ const CommonText = css<Props>`
   text-decoration: ${(props) => props.underline && "underline"};
   color: ${props => props.color && props.theme.colors[props.color]};
   text-align: ${props => props.align};
+  opacity: ${p => p.sub && 0.4};
 `;
 
 const Text = {

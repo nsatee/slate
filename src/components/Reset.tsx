@@ -6,6 +6,7 @@ import { getColor } from "../theme";
 export const GlobalReset = createGlobalStyle`
   * {
     font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
   }
 
   html, body, div, span, applet, object, iframe,

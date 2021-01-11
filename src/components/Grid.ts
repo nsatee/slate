@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { getSpace, Spaces } from "../theme";
+import Box from "./Box";
 import { CommonLayoutRule, CommonLayoutType } from "./Flex";
 
 type Props = CommonLayoutType & {
@@ -24,7 +25,7 @@ type Props = CommonLayoutType & {
   gap?: Spaces,
 }
 
-export const Grid = styled.div<Props>`
+export const Grid = styled(Box)<Props>`
   display: grid;
   grid-auto-flow: ${props => props.flow};
   grid-template-columns: ${props => props.col && `repeat(${props.col}, 1fr)`};
