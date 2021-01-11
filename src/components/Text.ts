@@ -13,7 +13,7 @@ type Props =  {
 const CommonText = css<Props>`
   font-weight: ${(props) => props.bold ? "bolder" : props.normal ? "normal" : props.light && "lighter"};
   text-decoration: ${(props) => props.underline && "underline"};
-  color: ${props => props.theme.colors[props.color || "text"]};
+  color: ${props => props.color && props.theme.colors[props.color]};
   text-align: ${props => props.align};
 `;
 

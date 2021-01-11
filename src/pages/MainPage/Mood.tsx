@@ -56,9 +56,7 @@ const Mood = () => {
           {feelings.map((feel) => (
             <Box mr="sm" mt="sm" key={feel}>
               <Button>
-                <Text.Display bold color="background">
-                  {feel}
-                </Text.Display>
+                <Text.Display bold>{feel}</Text.Display>
               </Button>
             </Box>
           ))}

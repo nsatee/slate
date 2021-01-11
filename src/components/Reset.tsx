@@ -1,6 +1,7 @@
 import { FC, Fragment } from "react";
 import { createGlobalStyle } from "styled-components";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
+import { getColor } from "../theme";
 
 export const GlobalReset = createGlobalStyle`
   * {
@@ -24,6 +25,7 @@ export const GlobalReset = createGlobalStyle`
     padding: 0;
     border: 0;
     vertical-align: baseline;
+    color: ${(p) => getColor(p, "text")};
   }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure, 

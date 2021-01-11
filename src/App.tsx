@@ -1,17 +1,10 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import MainPage from "./pages/MainPage";
-import theme, { getColor, Theme, ThemeSet, useTheme, getSpace } from "./theme";
+import { getColor, Theme, getSpace, useTheme } from "./theme";
 import Box from "./components/Box";
 import { Flex } from "./components/Flex";
 import Text from "./components/Text";
-
-const init: ThemeSet = {
-  dark: {
-    ...theme,
-    colors: { ...theme.colors, background: "#000000", text: "#ffffff" },
-  },
-};
+import { Button } from "./components/Button";
 
 const MainContainer = styled.div`
   background: ${(props) => getColor(props, "based")};
@@ -44,17 +37,21 @@ export const Content = styled(Flex)`
 `;
 
 const Navigation = () => {
+  const theme = useTheme();
   return (
     <NavContainer>
       <NavWrapper>
         <Text.H3>Logo</Text.H3>
-        <Flex>
+        <Flex align="center">
           <Box px="sm" py="sm">
             Home
           </Box>
           <Box px="sm" py="sm">
             Create
           </Box>
+          <Button onClick={() => theme.toggle(["light", "dark"])}>
+            <Text.H4>{theme.active}</Text.H4>
+          </Button>
         </Flex>
       </NavWrapper>
     </NavContainer>
@@ -62,14 +59,8 @@ const Navigation = () => {
 };
 
 function App() {
-  const theme = useTheme();
-
-  useEffect(() => {
-    theme.register(init);
-  }, [theme]);
-
   return (
-    <Theme theme={init}>
+    <Theme>
       <MainContainer>
         <Navigation />
         <Content alignSelf="center">
