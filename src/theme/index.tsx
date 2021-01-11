@@ -1,6 +1,5 @@
 import React, { createContext, FC, useContext, useMemo, useState } from "react";
-import { DefaultTheme, ThemeProps, ThemeProvider } from "styled-components";
-import tiny from "tinycolor2";
+import { ThemeProvider } from "styled-components";
 import { ButtonType } from "../components/Button";
 import { Reset } from "../components/Reset";
 
@@ -68,71 +67,6 @@ export const defaultTheme = {
   card: {
     corner: 12,
   },
-};
-
-type ColorType = "darken" | "brighten" | "alpha" | "lighten";
-type ColorValue =
-  | "0"
-  | "0.1"
-  | "0.2"
-  | "0.3"
-  | "0.4"
-  | "0.5"
-  | "0.6"
-  | "0.7"
-  | "0.8"
-  | "0.9";
-
-export const getSpace = (
-  props: ThemeProps<DefaultTheme>,
-  size?: keyof typeof spaces | "none",
-  asNumber?: boolean
-) => {
-  const value = size && size !== "none" ? props.theme.spaces[size] : 0;
-  return asNumber ? value : value + "px";
-};
-
-export const getColor = (
-  props: ThemeProps<DefaultTheme>,
-  color: ColorName = "brand",
-  colorCommand?: [ColorType, ColorValue] | boolean | "defaultTheme"
-) => {
-  if (colorCommand) {
-    const command = Array.isArray(colorCommand) && colorCommand![0];
-    const colorObj = tiny(props.theme.colors[color]);
-    const based = (based: number) =>
-      Array.isArray(colorCommand) ? parseFloat(colorCommand[1]) * based : 0;
-
-    switch (command) {
-      case "alpha":
-        return (
-          Array.isArray(colorCommand) &&
-          colorObj.setAlpha(parseFloat(colorCommand[1])).toRgbString()
-        );
-      case "darken":
-        return (
-          Array.isArray(colorCommand) &&
-          colorObj.darken(based(10)).toRgbString()
-        );
-      case "brighten":
-        return (
-          Array.isArray(colorCommand) &&
-          colorObj.brighten(based(10)).toRgbString()
-        );
-      case "lighten":
-        return (
-          Array.isArray(colorCommand) && colorObj.lighten(based(100)).toString()
-        );
-      default:
-        return typeof colorCommand === "string"
-          ? defaultTheme.colors.background
-          : colorCommand && colorObj.isLight()
-          ? props.theme.colors.text
-          : props.theme.colors.background;
-    }
-  } else {
-    return props.theme.colors[color];
-  }
 };
 
 export const initTheme = (

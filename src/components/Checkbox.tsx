@@ -1,6 +1,6 @@
 import { createContext, FC, HTMLAttributes, useContext, useState } from "react";
 import styled from "styled-components";
-import { getColor } from "../theme";
+import { getColor } from "../theme/util/getColor";
 
 type Props = {
   active?: boolean;

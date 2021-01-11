@@ -1,7 +1,7 @@
 import { FC, Fragment } from "react";
 import { createGlobalStyle } from "styled-components";
 import { Helmet } from "react-helmet-async";
-import { getColor } from "../theme";
+import { getColor } from "../theme/util/getColor";
 
 export const GlobalReset = createGlobalStyle`
   * {
